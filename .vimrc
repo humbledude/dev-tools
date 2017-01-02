@@ -19,6 +19,8 @@ Plugin 'L9'
 Plugin 'AutoComplPop'
 Plugin 'taglist.vim'
 Plugin 'The-NERD-tree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
