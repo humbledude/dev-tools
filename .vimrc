@@ -16,10 +16,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
-Plugin 'AutoComplPop'
 Plugin 'taglist.vim'
 Plugin 'The-NERD-tree'
 Plugin 'vim-airline/vim-airline'
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,3 +61,20 @@ colorscheme desert  "  vi 색상 테마 설정
 set backspace=eol,start,indent "  줄의 끝, 시작, 들여쓰기에서 백스페이스시 이전줄로
 set history=1000 "  vi 편집기록 기억갯수 .viminfo에 기록
 set tags+=tags;~ "  ~ 까지 탐색하며 tag file 추가
+
+" autocomplepop
+function! InsertTabWrapper()
+  let col=col('.')-1
+  if !col||getline('.')[col-1]!~'\k'
+    return "\<TAB>"
+  else
+    if pumvisible()
+      return "\<C-N>"
+    else
+      return "\<C-N>\<C-P>"
+    end
+  endif
+endfunction
+
+inoremap <TAB> <c-r>=InsertTabWrapper()<cr>
+
